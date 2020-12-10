@@ -142,7 +142,8 @@ RCT_EXPORT_METHOD(prepare:(nonnull NSNumber *)recorderId
     }
     
     // Set audio session active
-    [audioSession setActive:YES error:&error];
+    [audioSession setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
+
     if (error) {
         NSString *errMsg = [NSString stringWithFormat:@"Could not set audio session active, error: %@", error];
         NSDictionary* dict = [Helpers errObjWithCode:@"preparefail"
